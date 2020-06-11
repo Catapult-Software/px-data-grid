@@ -206,7 +206,7 @@ limitations under the License.
                 },
                 {
                   key: 'not_equal',
-                  val: 'Not Equal'
+                  val: 'Not equal'
                 },
                 {
                   key: 'contains',
@@ -464,10 +464,12 @@ limitations under the License.
           }
 
           columns.forEach((col) => {
-            optionList.push({
-              key: col.id,
-              val: this._resolveColumnName(col)
-            });
+            if (!('hiddenFromFilter' in col) || !col.hiddenFromFilter) {
+              optionList.push({
+                key: col.id,
+                val: this._resolveColumnName(col)
+              });
+            }
           });
 
           this.set('_mappedColumns', optionList);
