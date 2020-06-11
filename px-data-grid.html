@@ -511,6 +511,10 @@ limitations under the License.
              *     examples below for information on which options are available
              *     for each built-in renderer.
              *
+             *   * `{boolean} alwaysShown=false` - Hides the column from the
+             *     columns selection action menu: column is always shown and
+             *     cannot be hidden by user.
+             *
              * The following options are available for columns of type `date`:
              *
              *   * `{array} dateRanges` - List of pre-defined date ranges that
@@ -1902,6 +1906,10 @@ limitations under the License.
             // If this method gets called before column IDs are generated,
             // just ignore those columns.
             if (columnId === undefined) {
+              return;
+            }
+            // If a column is configured to be always shown, don't included it to the columns selector dropdown
+            if (columnElement.mappedObject.alwaysShown) {
               return;
             }
 
